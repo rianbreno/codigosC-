@@ -70,7 +70,7 @@ int main() {
         } else {
             cout << "\nLimite de 3 funcionarios atingido. Encerrando o cadastro." << endl;
             continuar = 0;
-        }
+    }
 
     } while (continuar == 1);
 
