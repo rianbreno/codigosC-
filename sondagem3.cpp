@@ -3,8 +3,7 @@
 
 using namespace std;
 
-// Variáveis e estruturas globais
-const int maxFuncionarios = 3;
+const int maxFuncionarios = 10;
 struct Funcionario {
     string nome;
     string cargo;
@@ -19,38 +18,33 @@ float custoTotalNovo = 0.0;
 int numGerentes = 0;
 int numEngenheiros = 0;
 
-// Constantes para os cargos
 const int GERENTE = 101;
 const int ENGENHEIRO = 102;
 const int OUTRO_CARGO = 103;
 
-// a) Função para calcular o novo salário e o aumento
-void calcularAumentoSalario(int indice, int opcaoCargo) {
+void calcularAumentoSalario(int i, int opcaoCargo) {
     float aumento;
 
     switch (opcaoCargo) {
         case GERENTE:
             aumento = 0.10;
-            funcionarios[indice].cargo = "Gerente";
+            funcionarios[i].cargo = "Gerente";
             break;
         case ENGENHEIRO:
             aumento = 0.20;
-            funcionarios[indice].cargo = "Engenheiro";
+            funcionarios[i].cargo = "Engenheiro";
             break;
         case OUTRO_CARGO:
             aumento = 0.40;
-            funcionarios[indice].cargo = "Outro Cargo";
+            funcionarios[i].cargo = "Outro Cargo";
             break;
         default:
-            aumento = 0.0;
-            funcionarios[indice].cargo = "Outro Cargo";
-            cout << "Opcao de cargo invalida! O cargo sera definido como 'Outro'." << endl;
+            cout << "Opcao de cargo invalida!" << endl;
     }
 
-    funcionarios[indice].novoSalario = funcionarios[indice].salarioAtual * (1 + aumento);
+    funcionarios[i].novoSalario = funcionarios[i].salarioAtual * (1 + aumento);
 }
 
-// b) Função para calcular e mostrar o número de gerentes e engenheiros
 void contarCargos() {
     numGerentes = 0;
     numEngenheiros = 0;
@@ -66,7 +60,6 @@ void contarCargos() {
     cout << "Numero de Engenheiros: " << numEngenheiros << endl;
 }
 
-// c) Função para calcular o custo total da empresa
 void calcularCustoTotal() {
     custoTotalAtual = 0.0;
     custoTotalNovo = 0.0;
@@ -77,14 +70,12 @@ void calcularCustoTotal() {
     }
 }
 
-// d) Função para mostrar os dados de todos os funcionários
 void mostrarDadosFuncionarios() {
     if (numFuncionarios == 0) {
         cout << "Nenhum funcionario foi cadastrado." << endl;
     } else {
         cout << "\n--- Dados dos Funcionarios Cadastrados ---" << endl;
         for (int i = 0; i < numFuncionarios; i++) {
-            cout << "------------------------------------------" << endl;
             cout << "Nome: " << funcionarios[i].nome << endl;
             cout << "Cargo: " << funcionarios[i].cargo << endl;
             cout << "Salario Antigo: R$ " << funcionarios[i].salarioAtual << endl;
@@ -121,9 +112,7 @@ int main() {
         cout << "Escolha uma opcao: ";
         cin >> opcaoCargo;
 
-        // Chama a função para calcular o aumento
         calcularAumentoSalario(numFuncionarios, opcaoCargo);
-
         numFuncionarios++;
 
         if (numFuncionarios < maxFuncionarios) {
@@ -134,15 +123,12 @@ int main() {
 
     } while (continuar == 1);
 
-    // Chama a função para mostrar os dados
     mostrarDadosFuncionarios();
 
     cout << "\n--- Estatisticas da Empresa ---" << endl;
 
-    // Chama a função para contar os cargos
     contarCargos();
 
-    // Chama a função para calcular o custo total
     calcularCustoTotal();
     cout << "Custo total atual com salarios: R$ " << custoTotalAtual << endl;
     cout << "Custo total apos o aumento: R$ " << custoTotalNovo << endl;

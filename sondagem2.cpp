@@ -10,7 +10,7 @@ struct Funcionario {
 };
 
 int main() {
-    Funcionario funcionarios[3];
+    Funcionario funcionarios[10];
     int continuar = 1;
     int numFuncionarios = 0;
     int numGerentes = 0;
@@ -22,8 +22,8 @@ int main() {
 
     do {
 
-        if (numFuncionarios >= 3) {
-            cout << "Limite de 3 funcionarios atingido." << endl;
+        if (numFuncionarios >= 10) {
+            cout << "Limite de 10 funcionarios atingido." << endl;
             break;
         }
 
@@ -63,7 +63,7 @@ int main() {
         custoTotalNovo += funcionarios[numFuncionarios].novoSalario;
         numFuncionarios++;
 
-        if (numFuncionarios < 3) {
+        if (numFuncionarios < 10) {
             cout << "\nDeseja cadastrar outro funcionario? " << endl;
             cout << "Digite 1 para CONTINUAR ou 0 para ENCERRAR: ";
             cin >> continuar;

@@ -18,7 +18,6 @@ bool validarCPF(string cpf) {
 Cliente cadastroCliente() {
     Cliente c;
     cout << "---Sistema de Cadastro de Clientes---" << endl;
-
     cout << "Informe o nome: ";
     cin >> c.nome;
     cout << "Informe o email: ";
@@ -39,7 +38,7 @@ Cliente cadastroCliente() {
 
 void exibirCliente(const Cliente lista [], int quantidade) {
     if (quantidade == 0) {
-        cout << "Nenhum cliente cadastradi!" << endl;
+        cout << "Nenhum cliente cadastrado!" << endl;
         return;
     }
     cout << "---Exibicao do Cadastro de Clientes---" << endl;
@@ -51,6 +50,33 @@ void exibirCliente(const Cliente lista [], int quantidade) {
     }
 }
 
+void buscarCPF(Cliente cad[], int total) {
+    if (total == 0) {
+        cout << "Nenhum cliente cadastrado para buscar!" << endl;
+        return;
+    }
+
+    string cpfBusca;
+    cout << "Digite o CPF para busca: ";
+    cin >> cpfBusca;
+
+    bool encontrado = false;
+
+    for (int j = 0; j < total; j++) {
+        if (cad[j].cpf == cpfBusca) {
+            cout << "\nCliente encontrado:" << endl;
+            cout << "Nome: " << cad[j].nome << endl;
+            cout << "CPF: " << cad[j].cpf << endl;
+            encontrado = true;
+            break;
+        }
+    }
+
+    if (!encontrado) {
+        cout << "Cliente com CPF " << cpfBusca << " nao encontrado." << endl;
+    }
+}
+
 int main() {
     const int NUM_CLIENTES = 50;
     Cliente clientes[NUM_CLIENTES];
@@ -58,10 +84,11 @@ int main() {
     int opcao;
 
     do {
-        cout << "---SISTEMA DE CADASTRO---";
+        cout << "\n---SISTEMA DE CADASTRO---" << endl;
         cout << "1 - CADASTRAR CLIENTE" << endl;
         cout << "2 - EXIBIR CLIENTE" << endl;
-        cout << "3 - SAIR" << endl;
+        cout << "3 - BUSCAR POR CPF" << endl;
+        cout << "4 - SAIR" << endl;
         cout << "Escolha uma opcao: ";
         cin >> opcao;
 
@@ -79,13 +106,16 @@ int main() {
                 exibirCliente(clientes, quantidadeClientes);
                 break;
             case 3:
+                buscarCPF(clientes, quantidadeClientes);
+                break;
+            case 4:
                 cout << "Encerrando sistema..." << endl;
                 break;
             default:
                 cout << "Opcao invalida!" << endl;
                 break;
         }
-    } while (opcao != 3);
+    } while (opcao != 4);
 
     return 0;
 }

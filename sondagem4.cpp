@@ -17,7 +17,6 @@ Cliente cadastrarCliente() {
     cin  >> c.cargo;
     cout << "Informe a idade: ";
     cin  >> c.idade;
-
     return c;
 }
 
